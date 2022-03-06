@@ -8,19 +8,26 @@ import java.util.List;
 import java.util.Set;
 
 @Entity
-public class Role {
-
+public class BookType {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
-
     private String name;
 
-    @JsonBackReference(value = "role_user")
-    @ManyToMany(mappedBy = "roles")
-    private Set<User> users;
 
-    public Role() {
+    @JsonBackReference(value = "")
+    @OneToMany(mappedBy = "bookType")
+    private Set<Book> books;
+
+    public Set<Book> getBooks() {
+        return books;
+    }
+
+    public void setBooks(Set<Book> books) {
+        this.books = books;
+    }
+
+    public BookType() {
     }
 
     public Long getId() {
@@ -39,11 +46,5 @@ public class Role {
         this.name = name;
     }
 
-    public Set<User> getUsers() {
-        return users;
-    }
 
-    public void setUsers(Set<User> users) {
-        this.users = users;
-    }
 }

@@ -4,7 +4,7 @@ package com.codegym.demo.model;
 import com.fasterxml.jackson.annotation.JsonBackReference;
 
 import javax.persistence.*;
-import java.util.List;
+import java.util.Set;
 
 @Entity
 @Table(name = "user", uniqueConstraints = {@UniqueConstraint(columnNames = "username")})
@@ -30,22 +30,18 @@ public class User {
 
     private String address;
 
-    @JsonBackReference(value = "user_role_back_class")
+    @JsonBackReference(value = "user_role")
     @ManyToMany(fetch = FetchType.EAGER)
     @JoinTable(name = "user_role", joinColumns = @JoinColumn(name = "user_id"), inverseJoinColumns = @JoinColumn(name = "role_id"))
-    private List<Role> roles;
+    private Set<Role> roles;
 
-    @JsonBackReference(value = "user_book_back_class")
-    @ManyToMany(mappedBy = "user")
-    private List<Book> books;
+    @JsonBackReference(value = "user_role")
+    @ManyToMany(fetch = FetchType.EAGER)
+    @JoinTable(name = "user_book", joinColumns = @JoinColumn(name = "user_id"), inverseJoinColumns = @JoinColumn(name = "book_id"))
+    private Set<Book> books;
 
-    public List<Book> getBooks() {
-        return books;
-    }
 
-    public void setBooks(List<Book> books) {
-        this.books = books;
-    }
+
 
     public User() {
     }
@@ -124,11 +120,19 @@ public class User {
         this.address = address;
     }
 
-    public List<Role> getRoles() {
+    public Set<Role> getRoles() {
         return roles;
     }
 
-    public void setRoles(List<Role> roles) {
+    public void setRoles(Set<Role> roles) {
         this.roles = roles;
+    }
+
+    public Set<Book> getBooks() {
+        return books;
+    }
+
+    public void setBooks(Set<Book> books) {
+        this.books = books;
     }
 }

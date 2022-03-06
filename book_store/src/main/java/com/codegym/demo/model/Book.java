@@ -4,6 +4,7 @@ import com.fasterxml.jackson.annotation.JsonBackReference;
 
 import javax.persistence.*;
 import java.util.List;
+import java.util.Set;
 
 @Entity
 public class Book {
@@ -19,17 +20,36 @@ public class Book {
     private String size;
     private String issue;
     private String price;
-
-
+    private String image;
 
     private String introduce;
 
-    @JsonBackReference(value = "book_role_back_class")
-    @ManyToMany(fetch = FetchType.EAGER)
-    @JoinTable(name = "book_user", joinColumns = @JoinColumn(name = "book_id"), inverseJoinColumns = @JoinColumn(name = "user_id"))
+    @JsonBackReference(value = "")
+    @ManyToMany(mappedBy = "books")
     private List<User> users;
 
+
+    @ManyToOne(targetEntity = BookType.class)
+    @JoinColumn(name = "book_type_id", referencedColumnName = "id")
+    private BookType bookType;
+
     public Book() {
+    }
+
+    public String getImage() {
+        return image;
+    }
+
+    public void setImage(String image) {
+        this.image = image;
+    }
+
+    public BookType getBookType() {
+        return bookType;
+    }
+
+    public void setBookType(BookType bookType) {
+        this.bookType = bookType;
     }
 
     public Long getId() {
