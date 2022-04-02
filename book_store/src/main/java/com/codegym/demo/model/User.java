@@ -40,8 +40,17 @@ public class User {
     @JoinTable(name = "user_book", joinColumns = @JoinColumn(name = "user_id"), inverseJoinColumns = @JoinColumn(name = "book_id"))
     private Set<Book> books;
 
+    @JsonBackReference(value = "user-orderdetail-class")
+    @OneToMany(mappedBy = "user")
+    private Set<OrderDetail> orderDetails;
 
+    public Set<OrderDetail> getOrderDetails() {
+        return orderDetails;
+    }
 
+    public void setOrderDetails(Set<OrderDetail> orderDetails) {
+        this.orderDetails = orderDetails;
+    }
 
     public User() {
     }

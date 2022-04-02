@@ -1,5 +1,7 @@
 package com.codegym.demo.service;
 
+import com.codegym.demo.dto.CartDto;
+
 import java.util.List;
 import java.util.Optional;
 
@@ -8,7 +10,7 @@ public interface IGeneralService<T> {
 
     Optional<T> findById(Long id);
 
-    void save(T t);
+    CartDto save(T t);
 
     void remove(Long id);
 }

@@ -28,6 +28,17 @@ public class Book {
     @ManyToMany(mappedBy = "books")
     private List<User> users;
 
+    public Set<OrderDetail> getOrderDetails() {
+        return orderDetails;
+    }
+
+    public void setOrderDetails(Set<OrderDetail> orderDetails) {
+        this.orderDetails = orderDetails;
+    }
+
+    @JsonBackReference(value = "books-back-class")
+    @OneToMany(mappedBy = "books")
+    private Set<OrderDetail> orderDetails;
 
     @ManyToOne(targetEntity = BookType.class)
     @JoinColumn(name = "book_type_id", referencedColumnName = "id")

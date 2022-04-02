@@ -1,6 +1,7 @@
 package com.codegym.demo.service.impl;
 
 
+import com.codegym.demo.dto.CartDto;
 import com.codegym.demo.model.Book;
 import com.codegym.demo.repository.IBookRepository;
 import com.codegym.demo.service.IBookService;
@@ -30,8 +31,9 @@ public class BookServiceImpl implements IBookService {
     }
 
     @Override
-    public void save(Book book) {
+    public CartDto save(Book book) {
         iBookRepository.save(book);
+        return null;
     }
 
     @Override

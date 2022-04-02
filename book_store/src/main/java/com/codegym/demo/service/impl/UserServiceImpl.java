@@ -1,6 +1,8 @@
 package com.codegym.demo.service.impl;
 
 
+import com.codegym.demo.dto.CartDto;
+import com.codegym.demo.model.Book;
 import com.codegym.demo.model.User;
 import com.codegym.demo.repository.IUserRepository;
 import com.codegym.demo.service.IUserService;
@@ -26,12 +28,18 @@ public class UserServiceImpl implements IUserService {
     }
 
     @Override
-    public void save(User user) {
+    public CartDto save(User user) {
         iUserRepository.save(user);
+        return null;
     }
 
     @Override
     public void remove(Long id) {
         iUserRepository.deleteById(id);
+    }
+
+    @Override
+    public List<User> getAll() {
+        return iUserRepository.findAll();
     }
 }

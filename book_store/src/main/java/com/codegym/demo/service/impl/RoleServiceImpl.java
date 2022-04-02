@@ -1,6 +1,7 @@
 package com.codegym.demo.service.impl;
 
 
+import com.codegym.demo.dto.CartDto;
 import com.codegym.demo.model.Role;
 import com.codegym.demo.repository.IRoleRepository;
 import com.codegym.demo.service.IRoleService;
@@ -26,8 +27,9 @@ public class RoleServiceImpl implements IRoleService {
     }
 
     @Override
-    public void save(Role role) {
+    public CartDto save(Role role) {
 
+        return null;
     }
 
     @Override

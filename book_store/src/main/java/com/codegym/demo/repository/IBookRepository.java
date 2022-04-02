@@ -7,7 +7,10 @@ import org.springframework.data.domain.Pageable;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.query.Param;
+import org.springframework.stereotype.Service;
 
+
+@Service
 public interface IBookRepository extends JpaRepository<Book,Long> {
 
     @Query(value = "SELECT * FROM book WHERE`name` LIKE :name ORDER BY issue DESC ", nativeQuery = true)
